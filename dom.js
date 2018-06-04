@@ -38,15 +38,14 @@ postBtn.click(function(){
 }) //end of the fetch command
 
 function generateCard(order){
-  let entry = $("<div>").html(`
-    <div class="card horizontal">
+  let entry = $("<div>").addClass("card horizontal").html(`
       <div class="card-image">
       </div>
-        <div class="card-stacked">
-            <div class="card-content">
-              <h5>${order['emailAddress']}</h5>
-              <p>${order['coffee']} <br> <small class="text-muted">${order['_id']}</small></p>
             `)
+
+            let content = $("<div>").addClass("card-stacked").html(`<div class="card-content">
+              <h5>${order['emailAddress']}</h5>
+              <p>${order['coffee']} <br> <small class="text-muted">${order['_id']}</small></p>`)
 
             let deleteBtn = $("<div>").html(`
           <a href="#">ORDER COMPLETE!</a>
@@ -54,7 +53,8 @@ function generateCard(order){
           deleteBtn.click(function(){
             deleteOrder(order['emailAddress'])
           })
-          entry.append(deleteBtn)
+          content.append(deleteBtn)
+          entry.append(content)
         entry.append(`</div>
         </div>
       </div>`)
